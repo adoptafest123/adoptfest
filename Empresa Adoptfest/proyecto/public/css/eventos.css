@@ -1,0 +1,709 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('/storage/img/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding-top: 70px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+/* ── NAVBAR ── */
+.navbar-principal {
+    background: rgba(0, 100, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: white !important;
+    margin: 0 8px;
+    font-weight: 500;
+}
+
+.estilo-bienvenida {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.estilo-bienvenida a {
+    white-space: nowrap;
+}
+
+.btn-perfil {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.btn-perfil:hover {
+    background: white;
+    color: #198754;
+    transform: translateY(-2px);
+}
+
+.avatar-perfil {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: white;
+    color: #198754;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-admin {
+    background: #212529;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.btn-admin:hover {
+    background: #198754;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25,135,84,.4);
+}
+
+.boton-logout {
+    border-radius: 12px;
+    padding: 6px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.logo-navbar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.badge-noti {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc2626;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── HERO ── */
+.hero-eventos {
+    position: relative;
+    background: url('/img/mascota_2.jpg') center/cover no-repeat;
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,80,0,0.6));
+}
+
+.hero-texto {
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #86efac;
+    margin-bottom: 12px;
+}
+
+.hero-texto h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.hero-sub {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 28px;
+}
+
+.btn-hero {
+    padding: 12px 36px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* ══════════════════════════════════════════
+   FILTROS — estilo adopciones
+══════════════════════════════════════════ */
+.filtros-section {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 24px 28px;
+    margin: 36px 0 16px;
+}
+
+.filtros-titulo {
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filtro-btn {
+    padding: 9px 22px;
+    border-radius: 50px;
+    border: 2px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-weight: 500;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    backdrop-filter: blur(4px);
+}
+
+.filtro-btn:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Activo — igual clase que adopciones */
+.filtro-btn.activo-filtro {
+    background: white;
+    color: #155724;
+    border-color: white;
+    font-weight: 700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+/* ── CONTADOR DE RESULTADOS ── */
+.contador-resultados {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.88rem;
+    margin-bottom: 24px;
+    padding-left: 4px;
+}
+
+.contador-resultados strong {
+    color: white;
+    font-weight: 700;
+}
+
+/* ── CONTENEDOR EVENTOS ── */
+.eventos-container {
+    padding-bottom: 20px;
+}
+
+/* ── CARD EVENTO ── */
+.card-evento {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    transition: transform 0.28s, box-shadow 0.28s;
+}
+
+.card-evento:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+}
+
+.card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.card-evento:hover .card-img-wrapper img {
+    transform: scale(1.04);
+}
+
+.badge-categoria {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+}
+
+.badge-adopcion   { background: rgba(21,87,36,0.85);  color: #d1fae5; }
+.badge-educacion  { background: rgba(23,66,134,0.85); color: #dbeafe; }
+.badge-recreacion { background: rgba(146,81,6,0.85);  color: #fef3c7; }
+
+.badge-estado {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+}
+
+.estado-activo     { background: rgba(22,163,74,0.9);  color: white; }
+.estado-finalizado { background: rgba(55,65,81,0.9);   color: #e5e7eb; }
+.estado-cancelado  { background: rgba(220,38,38,0.9);  color: white; }
+
+.evento-titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+
+.evento-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.evento-desc {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.btn-participar {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-participar:hover {
+    background: linear-gradient(135deg, #15803d, #166534);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(22,163,74,0.4);
+}
+.btn-finalizado {
+    background: #374151;
+    color: #9ca3af;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.btn-cancelado {
+    background: #fca5a5;
+    color: #991b1b;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* ══════════════════════════════════════════
+   SIN RESULTADOS — estilo adopciones
+══════════════════════════════════════════ */
+.sin-resultados {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 60px 30px;
+    text-align: center;
+    color: white;
+    margin: 20px 0 40px;
+}
+
+.sin-resultados h5 {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.2rem;
+}
+
+.sin-resultados p {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Cuando el filtro JS no encuentra coincidencias */
+.sin-resultados-filtro {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 60px 30px;
+    text-align: center;
+    color: white;
+    margin: 10px 0 40px;
+}
+
+.sin-resultados-filtro h5 {
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+}
+
+.sin-resultados-filtro p {
+    color: rgba(255,255,255,0.6);
+}
+.btn-interes {
+    flex: 1;
+    background: linear-gradient(135deg, #198754, #15803d);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 0;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-interes:hover {
+    background: linear-gradient(135deg, #15803d, #166534);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(25,135,84,0.35);
+}
+
+/* Estado en proceso / en evento — deshabilitado */
+.btn-interes-disabled {
+    flex: 1;
+    background: #f3f4f6 !important;
+    color: #9ca3af !important;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 8px 0;
+    font-size: 0.83rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    cursor: not-allowed;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ── SUSCRIPCIÓN ── */
+.suscripcion {
+    background: rgba(255,255,255,0.93);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    margin-bottom: 60px;
+}
+
+.suscripcion h4 {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.suscripcion p {
+    color: #555;
+    margin-bottom: 24px;
+}
+
+.suscripcion .form-control {
+    border-radius: 12px;
+    border: 2px solid #d1d5db;
+    padding: 12px 16px;
+}
+
+.suscripcion .form-control:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+}
+
+.suscripcion .btn-success {
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 12px 28px;
+}
+
+/* ── MODAL PERFIL ── */
+.perfil-modal {
+    border: none;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.perfil-header {
+    background: linear-gradient(135deg, #198754, #28a745);
+    color: white;
+    padding: 28px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.perfil-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: white;
+    color: #198754;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.perfil-header h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.perfil-modal .modal-body {
+    background: #f8f9fa;
+}
+
+.perfil-modal .card {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 15px !important;
+}
+
+.perfil-modal .card-body h5 {
+    color: #198754;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.perfil-modal .form-label {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.perfil-modal .form-control {
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+.perfil-modal .btn-success {
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.perfil-modal .modal-footer {
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.perfil-header .btn-close {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.perfil-header .btn-close:hover {
+    opacity: 1;
+}
+
+/* ── NOTIFICACIONES ── */
+.noti-item {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-left: 4px solid #e5e7eb;
+    background: #f9fafb;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.noti-item.no-leida {
+    background: #f0fdf4;
+    border-left-color: #198754;
+}
+
+.noti-item.tipo-aceptado  { border-left-color: #16a34a; }
+.noti-item.tipo-rechazado { border-left-color: #dc2626; background: #fef2f2; }
+.noti-item.tipo-info      { border-left-color: #2563eb; background: #eff6ff; }
+
+.noti-punto {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #198754;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.noti-titulo {
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+    color: #111827;
+}
+
+.noti-mensaje {
+    font-size: 0.84rem;
+    color: #374151;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.noti-fecha {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.noti-acciones {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.btn-leer-noti {
+    background: #d1fae5;
+    color: #065f46;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-leer-noti:hover { background: #059669; color: white; }
+
+.btn-del-noti {
+    background: #fee2e2;
+    color: #991b1b;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-del-noti:hover { background: #dc2626; color: white; }
+
+.sin-notis {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #9ca3af;
+}
+
+.sin-notis p { font-size: 2.5rem; margin-bottom: 8px; }
+
+.noti-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.btn-leer-todas {
+    background: none;
+    border: 1px solid #198754;
+    color: #198754;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-leer-todas:hover { background: #198754; color: white; }
+
+/* ── FOOTER ── */
+.footer-principal {
+    background: rgba(0,0,0,0.92);
+}
+
+/* ── ANIMACIONES ── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .hero-eventos { height: 420px; }
+    .suscripcion  { padding: 30px 20px; }
+    .filtros-section { padding: 18px; }
+    .filtros { gap: 8px; }
+    .filtro-btn { padding: 7px 16px; font-size: 0.82rem; }
+}

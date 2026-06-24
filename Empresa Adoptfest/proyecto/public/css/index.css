@@ -1,0 +1,384 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+   background: url('/storage/img/fondo.jpg') no-repeat center center fixed;   
+    background-size: cover;
+    padding-top: 55px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+/* CONTENEDOR DE BOTONES */
+.estilo-bienvenida{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:nowrap;
+}
+
+.estilo-bienvenida a{
+    white-space:nowrap;
+}
+
+/* BOTÓN PERFIL */
+.btn-perfil{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    padding:8px 18px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:600;
+    border:1px solid rgba(255,255,255,0.3);
+    transition:0.3s;
+    backdrop-filter:blur(10px);
+}
+
+.btn-perfil:hover{
+    background:white;
+    color:#198754;
+    transform:translateY(-2px);
+}
+
+/* CÍRCULO DEL USUARIO */
+.avatar-perfil{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:white;
+    color:#198754;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* BOTONES ADMIN */
+.btn-admin{
+    background:#212529;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:8px 15px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.btn-admin:hover{
+    background:#198754;
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(25,135,84,.4);
+}
+
+/* LOGOUT */
+.boton-logout{
+    border-radius:12px;
+    padding:10px 15px;
+    font-weight:600;
+}
+.bienvenida-texto {
+    color: white;
+    font-weight: bold;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.boton-logout {
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+.logo-navbar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.logo-navbar {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.navbar-principal {
+    background: rgba(0, 100, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: white !important;
+    margin: 0 10px;
+}
+
+
+.carrusel-imagen {
+    height: 600px;
+    object-fit: cover;
+}
+
+.carrusel-contenedor-texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    text-align: center;
+}
+
+
+.carrusel-caja-texto {
+    background: rgba(0,0,0,0.6);
+    color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+
+.tarjeta-mascota {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.tarjeta-mascota:hover {
+    transform: translateY(-8px);
+}
+
+.tarjeta-imagen {
+    height: 200px;
+    object-fit: cover;
+}
+.modal-content {
+    border-radius: 18px;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.modal-body h6 {
+    font-weight: 600;
+}
+
+.seccion-contenido {
+    background: rgba(255,255,255,0.9);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.footer-principal {
+    background: rgba(0,0,0,0.9);
+}
+.perfil-modal{
+    border:none;
+    border-radius:25px;
+    overflow:hidden;
+}
+
+.perfil-header{
+    background:linear-gradient(135deg,#198754,#28a745);
+    color:white;
+    padding:30px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.perfil-avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:white;
+    color:#198754;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:38px;
+    font-weight:bold;
+}
+
+.perfil-header h3{
+    margin:0;
+    font-weight:700;
+}
+
+.modal-body .card{
+    border:none;
+    border-radius:15px;
+}
+
+.modal-body h5{
+    color:#198754;
+    font-weight:700;
+}
+/* ── AÑADIR AL FINAL DE index.css ── */
+  /* ── BANDEJA NOTIFICACIONES ── */
+  .noti-item {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-left: 4px solid #e5e7eb;
+    background: #f9fafb;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .noti-item.no-leida {
+    background: #f0fdf4;
+    border-left-color: #198754;
+  }
+  .noti-item.tipo-aceptado  { border-left-color: #16a34a; }
+  .noti-item.tipo-rechazado { border-left-color: #dc2626; background: #fef2f2; }
+  .noti-item.tipo-info      { border-left-color: #2563eb; background: #eff6ff; }
+
+  .noti-titulo {
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+    color: #111827;
+  }
+  .noti-mensaje {
+    font-size: 0.84rem;
+    color: #374151;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  .noti-fecha {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+  .noti-acciones {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .btn-leer-noti {
+    background: #d1fae5; color: #065f46;
+    border: none; border-radius: 8px;
+    padding: 4px 12px; font-size: 0.78rem;
+    font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-leer-noti:hover { background: #059669; color: white; }
+  .btn-del-noti {
+    background: #fee2e2; color: #991b1b;
+    border: none; border-radius: 8px;
+    padding: 4px 12px; font-size: 0.78rem;
+    font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-del-noti:hover { background: #dc2626; color: white; }
+
+  .badge-noti {
+    position: absolute;
+    top: -5px; right: -5px;
+    background: #dc2626; color: white;
+    border-radius: 50%; width: 20px; height: 20px;
+    font-size: 0.72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .btn-perfil { position: relative; }
+
+  .sin-notis {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #9ca3af;
+  }
+  .sin-notis p { font-size: 2.5rem; margin-bottom: 8px; }
+
+  .noti-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .btn-leer-todas {
+    background: none;
+    border: 1px solid #198754;
+    color: #198754;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-leer-todas:hover { background: #198754; color: white; }
+/* Header del modal con gradiente y flex */
+.perfil-header {
+    background: linear-gradient(135deg, #198754, #28a745);
+    color: white;
+    padding: 28px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Avatar grande en el header */
+.perfil-avatar-grande {
+    flex-shrink: 0;
+}
+
+/* El modal body debe tener fondo blanco limpio */
+.perfil-modal .modal-body {
+    background: #f8f9fa;
+}
+
+/* Cards dentro del modal con borde suave */
+.perfil-modal .card {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 15px !important;
+}
+
+/* Títulos de cada sección dentro del modal */
+.perfil-modal .card-body h5 {
+    color: #198754;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Labels del formulario */
+.perfil-modal .form-label {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+/* Inputs del formulario */
+.perfil-modal .form-control {
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+/* Botón guardar */
+.perfil-modal .btn-success {
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+/* Footer del modal */
+.perfil-modal .modal-footer {
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Botón X de cerrar en el header */
+.perfil-header .btn-close {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+.perfil-header .btn-close:hover {
+    opacity: 1;
+}

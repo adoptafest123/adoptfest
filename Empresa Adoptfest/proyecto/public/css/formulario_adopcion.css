@@ -1,0 +1,309 @@
+body {
+    font-family: 'Poppins', sans-serif;
+   background: url('/storage/img/fondo.jpg') no-repeat center center fixed;   
+    background-size: cover;
+    padding-top: 55px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    z-index: -1;
+}
+
+/* ── NAVBAR (mismo que index) ── */
+.navbar-principal {
+    background: rgba(0, 100, 0, 0.7);
+    backdrop-filter: blur(10px);
+}
+.nav-link { color: white !important; margin: 0 10px; }
+.logo-navbar { width: 60px; height: 40px; object-fit: cover; border-radius: 50%; }
+.estilo-bienvenida { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; }
+
+.btn-perfil {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15);
+    color: white; padding: 8px 18px;
+    border-radius: 50px; font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: .3s; backdrop-filter: blur(10px);
+    position: relative;
+}
+.btn-perfil:hover { background: white; color: #198754; transform: translateY(-2px); }
+
+.avatar-perfil {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: white; color: #198754;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: bold;
+}
+
+.badge-noti {
+    position: absolute; top: -5px; right: -5px;
+    background: #dc2626; color: white;
+    border-radius: 50%; width: 20px; height: 20px;
+    font-size: .72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.btn-admin{
+    background:#212529;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:8px 15px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.btn-admin:hover{
+    background:#198754;
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(25,135,84,.4);
+}
+.boton-logout { border-radius: 20px; padding: 6px 14px; font-weight: 600; }
+
+/* ── HERO ── */
+.hero-form {
+    text-align: center; color: white;
+    padding: 2.8rem 1rem 1.8rem;
+}
+.hero-form h1 { font-size: 2.1rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+.hero-form p  { font-size: .95rem; opacity: .85; margin-top: .3rem; }
+
+/* ── CARD MASCOTA ── */
+.mascota-resumen {
+    background: white;
+    border-radius: 20px;
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    margin-bottom: 28px;
+    border: 1.5px solid #dcfce7;
+}
+.mascota-resumen img {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #16a34a;
+    flex-shrink: 0;
+}
+.mascota-resumen h4 { margin: 0 0 4px; font-weight: 700; color: #14532d; }
+.mascota-resumen small { color: #6b7280; font-size: .82rem; }
+.badge-disponible {
+    background: #dcfce7; color: #166534;
+    border-radius: 20px; padding: 3px 10px;
+    font-size: .72rem; font-weight: 700;
+    display: inline-block; margin-left: 6px;
+}
+
+/* ── PROGRESO ── */
+.progreso-wrapper {
+    background: white;
+    border-radius: 16px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+}
+.progreso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.progreso-header span:first-child { font-size: .83rem; font-weight: 600; color: #374151; }
+.progreso-header span:last-child  { font-size: .83rem; font-weight: 700; color: #16a34a; }
+.progreso-bar {
+    height: 8px;
+    background: #dcfce7;
+    border-radius: 99px;
+    overflow: hidden;
+}
+.progreso-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #16a34a, #22c55e);
+    border-radius: 99px;
+    transition: width .4s ease;
+}
+.progreso-texto { font-size: .8rem; color: #6b7280; text-align: right; margin-top: 4px; }
+.paso-dots { display: flex; gap: 6px; margin-top: 8px; }
+.paso-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #dcfce7;
+    transition: background .3s;
+}
+.paso-dot.activo { background: #16a34a; }
+
+/* ── SECCIONES ── */
+.seccion {
+    background: white;
+    border-radius: 20px;
+    padding: 26px 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    margin-bottom: 20px;
+    border: 1px solid #f0fdf4;
+}
+.seccion-titulo {
+    font-size: .95rem;
+    font-weight: 700;
+    color: #14532d;
+    border-bottom: 2px solid #dcfce7;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.seccion-num {
+    background: #dcfce7; color: #166534;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .78rem; font-weight: 700;
+    flex-shrink: 0;
+}
+.btn-contador {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-contador:hover {
+    background: #e5e7eb;
+}
+/* ── INPUTS ── */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1.5px solid #d1fae5;
+    padding: 10px 14px;
+    font-size: .9rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border .2s;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22,163,74,.12);
+    outline: none;
+}
+.form-control[readonly] { background: #f9fafb; color: #9ca3af; }
+.form-label { font-weight: 600; font-size: .85rem; color: #374151; margin-bottom: 5px; }
+.form-hint { font-size: .75rem; color: #9ca3af; margin-top: 3px; }
+
+/* ── CAMPO CONDICIONAL ── */
+.campo-extra {
+    background: #f0fdf4;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    border: 1px solid #dcfce7;
+}
+
+/* ── RADIO CARDS ── */
+.radio-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.radio-card {
+    flex: 1; min-width: 110px;
+    border: 2px solid #d1fae5;
+    border-radius: 14px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+}
+.radio-card:hover { border-color: #16a34a; background: #f0fdf4; }
+.radio-card input { display: none; }
+.radio-card.seleccionado { border-color: #16a34a; background: #dcfce7; }
+.radio-card .icono { font-size: 1.8rem; display: block; margin-bottom: 5px; }
+.radio-card .texto { font-size: .82rem; font-weight: 600; color: #374151; }
+.radio-card.seleccionado .texto { color: #166534; }
+
+/* Badge check en radio seleccionado */
+.radio-card.seleccionado::after {
+    content: '✓';
+    position: absolute; top: 8px; right: 10px;
+    background: #16a34a; color: white;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    font-size: .65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* ── CHECK CARDS ── */
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+}
+.check-card {
+    border: 1.5px solid #d1fae5;
+    border-radius: 12px;
+    padding: 13px 15px;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+}
+.check-card:hover { border-color: #16a34a; background: #f0fdf4; }
+.check-card input[type=checkbox] { accent-color: #16a34a; width: 18px; height: 18px; flex-shrink: 0; }
+.check-card label { cursor: pointer; font-size: .87rem; margin: 0; }
+
+/* ── TEXTAREA CON CONTADOR ── */
+.textarea-wrapper { position: relative; }
+textarea { padding-bottom: 26px !important; resize: none; }
+.char-count {
+    position: absolute; bottom: 8px; right: 12px;
+    font-size: .72rem; color: #9ca3af;
+}
+
+/* ── DECLARACIÓN ── */
+.declaracion-check {
+    background: #dcfce7;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-top: 16px;
+    border: 1px solid #bbf7d0;
+}
+.declaracion-check .form-check-input { accent-color: #16a34a; width: 20px; height: 20px; }
+.declaracion-check .form-check-label { font-size: .87rem; color: #166534; line-height: 1.6; }
+
+/* ── BOTÓN ── */
+.btn-enviar {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white; border: none;
+    border-radius: 16px;
+    padding: 18px 40px;
+    font-size: 1rem; font-weight: 700;
+    width: 100%; cursor: pointer;
+    transition: all .2s;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: .02em;
+}
+.btn-enviar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(22,163,74,.35);
+}
+
+/* ── CAMPO REQUERIDO ── */
+.campo-requerido { color: #dc2626; font-size: .8rem; margin-top: 4px; display: none; }
+.input-error { border-color: #dc2626 !important; }
+.footer-principal { background: rgba(0,0,0,0.9); }

@@ -1,0 +1,209 @@
+/* ── BASE ── */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('/storage/img/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 90px 16px 40px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: -1;
+}
+
+/* ── NAVBAR ── */
+.navbar-principal {
+    background: rgba(0, 100, 0, 0.75);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: white !important;
+    margin: 0 8px;
+    font-weight: 500;
+}
+
+.logo-navbar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.logo-navbar:hover { transform: scale(1.1); }
+
+/* ── CONTENEDOR ── */
+.registro-contenedor {
+    background: rgba(255,255,255,0.97);
+    padding: 36px 40px 32px;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    text-align: center;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── LOGO DENTRO DEL CARD ── */
+.registro-logo img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #16a34a;
+    box-shadow: 0 4px 14px rgba(22,163,74,0.25);
+}
+
+/* ── TÍTULO ── */
+.registro-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.registro-sub {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 22px;
+}
+
+/* ── CAMPOS CON ICONO ── */
+.campo-grupo {
+    position: relative;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.campo-icono {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    z-index: 2;
+    pointer-events: none;
+    /* ajuste para campos con invalid-feedback */
+    top: 19px;
+}
+
+.campo-input {
+    padding-left: 42px !important;
+    padding-right: 42px !important;
+    border-radius: 12px !important;
+    border: 1.5px solid #d1d5db !important;
+    font-size: 0.9rem !important;
+    height: 44px;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+.campo-input:focus {
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 3px rgba(22,163,74,0.15) !important;
+    outline: none;
+}
+
+.campo-input.is-valid {
+    border-color: #16a34a !important;
+    background-image: none !important;
+}
+
+.campo-input.is-invalid {
+    border-color: #ef4444 !important;
+    background-image: none !important;
+}
+
+/* ── OJO VER CONTRASEÑA ── */
+.ojo-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem;
+    padding: 2px 4px;
+    line-height: 1;
+    z-index: 3;
+}
+
+/* ── BARRA FUERZA CONTRASEÑA ── */
+.fuerza-wrapper {
+    margin: -6px 0 10px;
+    text-align: left;
+}
+
+.fuerza-barra {
+    height: 5px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.fuerza-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s, background 0.3s;
+    width: 0%;
+}
+
+.fuerza-texto {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ── BOTÓN REGISTRAR ── */
+.btn-registro {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 11px 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+}
+
+.btn-registro:hover {
+    background: linear-gradient(135deg, #15803d, #166534);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(22,163,74,0.35);
+}
+
+/* ── LINK ── */
+.link-verde {
+    color: #16a34a;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-verde:hover {
+    color: #15803d;
+    text-decoration: underline;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+    .registro-contenedor {
+        padding: 28px 22px 24px;
+    }
+}
