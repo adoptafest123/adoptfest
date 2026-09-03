@@ -1,3 +1,4 @@
+// src/main/java/com/adoptfest/backend/dto/DonacionEspecieRequest.java
 package com.adoptfest.backend.dto;
 
 import com.adoptfest.backend.model.CategoriaDonacion;
@@ -25,5 +26,7 @@ public record DonacionEspecieRequest(
 
         @NotBlank(message = "Indica un teléfono de contacto.")
         @Pattern(regexp = "^[0-9]{7,10}$", message = "El teléfono debe tener entre 7 y 10 dígitos, solo números.")
-        String telefonoContacto
+        String telefonoContacto,
+
+        Long refugioId
 ) {}

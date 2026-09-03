@@ -1,3 +1,4 @@
+// src/main/java/com/adoptfest/backend/controller/DonacionController.java
 package com.adoptfest.backend.controller;
 
 import com.adoptfest.backend.dto.CrearDonacionDineroRequest;
@@ -75,7 +76,6 @@ public class DonacionController {
     @GetMapping("/api/admin/donaciones")
     public Map<String, Object> listarAdmin() {
         List<DonacionEspecie> especies = donacionEspecieRepository.findAllByOrderByCreatedAtDesc();
-        // 👇 CAMBIADO: ahora trae TODAS las donaciones en dinero, no solo las completadas
         List<DonacionDinero> dineros = donacionDineroRepository.findAllByOrderByCreatedAtDesc();
         return Map.of("especies", especies, "dineros", dineros);
     }

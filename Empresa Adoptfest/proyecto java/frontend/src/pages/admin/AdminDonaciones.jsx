@@ -131,12 +131,13 @@ export default function AdminDonaciones() {
                   <th>Moneda</th>
                   <th>Fecha</th>
                   <th>Puntos</th>
+                  <th>Refugio</th>
                   <th>Estado</th>
                 </tr>
               </thead>
               <tbody>
                 {donaciones.dineros?.length === 0 && (
-                  <tr><td colSpan="7" className="admin-vacio">No hay donaciones en dinero</td></tr>
+                  <tr><td colSpan="8" className="admin-vacio">No hay donaciones en dinero</td></tr>
                 )}
                 {donaciones.dineros?.map((d) => (
                   <tr key={d.id}>
@@ -152,6 +153,7 @@ export default function AdminDonaciones() {
                         {d.puntosOtorgados || "—"}
                       </span>
                     </td>
+                    <td>{d.refugio?.nombre || "—"}</td>
                     <td>
                       <span className={d.estado === "COMPLETADO" ? "admin-badge-disponible" : "admin-badge-pendiente-fuerte"}>
                         {d.estado === "COMPLETADO" ? "✅ Completado" : "⏳ Pendiente"}
@@ -176,13 +178,14 @@ export default function AdminDonaciones() {
                   <th>Cantidad</th>
                   <th>Fecha</th>
                   <th>Puntos</th>
+                  <th>Refugio</th>
                   <th>Estado</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 {donaciones.especies?.length === 0 && (
-                  <tr><td colSpan="9" className="admin-vacio">No hay donaciones en especie</td></tr>
+                  <tr><td colSpan="10" className="admin-vacio">No hay donaciones en especie</td></tr>
                 )}
                 {donaciones.especies?.map((d) => (
                   <tr key={d.id}>
@@ -197,6 +200,7 @@ export default function AdminDonaciones() {
                         {d.puntosOtorgados || "—"}
                       </span>
                     </td>
+                    <td>{d.refugio?.nombre || "—"}</td>
                     <td>
                       <span className={getEstadoBadge(d.estado)}>{getEstadoLabel(d.estado)}</span>
                     </td>

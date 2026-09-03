@@ -1,3 +1,4 @@
+// src/main/java/com/adoptfest/backend/model/DonacionEspecie.java
 package com.adoptfest.backend.model;
 
 import jakarta.persistence.*;
@@ -23,6 +24,10 @@ public class DonacionEspecie {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "refugio_id")
+    private Refugio refugio;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -67,7 +72,6 @@ public class DonacionEspecie {
         createdAt = LocalDateTime.now();
     }
 
-    /** Misma fórmula que tenías en Laravel: puntos por unidad × cantidad (mínimo 1). */
     public int calcularPuntos() {
         return categoria.getPuntosPorUnidad() * Math.max(1, cantidad);
     }

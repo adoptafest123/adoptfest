@@ -1,5 +1,5 @@
 // src/pages/Donaciones.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
@@ -7,6 +7,7 @@ import {
   registrarDonacionEspecie, 
   crearOrdenDonacionDinero 
 } from "../services/donacionService";
+import { listarRefugios } from "../services/refugioService";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Donaciones.css";
@@ -18,6 +19,17 @@ function Donaciones() {
   const { usuario } = useAuth();
   const toast = useToast();
   const navigate = useNavigate();
+
+  // ── Refugios ──
+  const [refugios, setRefugios] = useState([]);
+  const [cargandoRefugios, setCargandoRefugios] = useState(true);
+
+  useEffect(() => {
+    listarRefugios()
+      .then((res) => setRefugios(res.data))
+      .catch(() => console.error("Error cargando refugios"))
+      .finally(() => setCargandoRefugios(false));
+  }, []);
 
   const [tipoDonacion, setTipoDonacion] = useState(null);
   const [monto, setMonto] = useState("");
@@ -41,6 +53,7 @@ function Donaciones() {
     // Campos comunes
     cantidad: 1,
     descripcionAdicional: "",
+    refugioId: "",
     tipoRecoleccion: "vienen",
     direccionRecoleccion: "",
     telefonoContacto: "",
@@ -80,6 +93,11 @@ function Donaciones() {
       return;
     }
 
+    if (!formEspecie.refugioId) {
+      toast.error("Selecciona un refugio para tu donación.");
+      return;
+    }
+
     const montoNum = parseFloat(monto);
     if (isNaN(montoNum) || montoNum < 1 || montoNum > 10000) {
       toast.error("El monto debe ser entre $1 y $10,000.");
@@ -88,7 +106,10 @@ function Donaciones() {
 
     setCargandoDinero(true);
     try {
-      const response = await crearOrdenDonacionDinero({ monto: montoNum });
+      const response = await crearOrdenDonacionDinero({ 
+        monto: montoNum,
+        refugioId: parseInt(formEspecie.refugioId)
+      });
       const { linkAprobacion } = response.data;
       window.location.href = linkAprobacion;
     } catch (error) {
@@ -103,6 +124,11 @@ function Donaciones() {
     if (!usuario) {
       toast.error("Debes iniciar sesión para donar.");
       navigate("/login");
+      return;
+    }
+
+    if (!formEspecie.refugioId) {
+      toast.error("Selecciona un refugio para tu donación.");
       return;
     }
 
@@ -221,14 +247,18 @@ function Donaciones() {
         descripcion: descripcionCompleta,
         direccionRecoleccion: direccionFinal,
         telefonoContacto: formEspecie.telefonoContacto,
+        refugioId: parseInt(formEspecie.refugioId),
       };
       
       const response = await registrarDonacionEspecie(payload);
+      
+      const refugioSeleccionado = refugios.find(r => r.id === parseInt(formEspecie.refugioId));
       
       setDonacionData({
         categoria: formEspecie.categoria,
         cantidad: formEspecie.cantidad,
         tipoRecoleccion: formEspecie.tipoRecoleccion,
+        refugio: refugioSeleccionado,
       });
       
       setDonacionExitosa(true);
@@ -248,6 +278,7 @@ function Donaciones() {
         estadoCama: "",
         cantidad: 1,
         descripcionAdicional: "",
+        refugioId: "",
         tipoRecoleccion: "vienen",
         direccionRecoleccion: "",
         telefonoContacto: "",
@@ -292,6 +323,27 @@ function Donaciones() {
       <p className="subtitulo">Tu aporte económico ayuda a cubrir gastos veterinarios, alimentación y rescate de animales.</p>
       
       <form onSubmit={handleDonarDinero}>
+        {/* Selector de Refugio */}
+        <div className="campo">
+          <label htmlFor="refugioIdDinero">Refugio beneficiario *</label>
+          <select
+            id="refugioIdDinero"
+            name="refugioId"
+            value={formEspecie.refugioId}
+            onChange={handleEspecieChange}
+            required
+            disabled={cargandoRefugios}
+          >
+            <option value="">{cargandoRefugios ? "Cargando refugios..." : "Selecciona un refugio"}</option>
+            {refugios.map((refugio) => (
+              <option key={refugio.id} value={refugio.id}>
+                🏠 {refugio.nombre} - {refugio.direccion}
+              </option>
+            ))}
+          </select>
+          <small>Elige el refugio al que quieres ayudar</small>
+        </div>
+
         <div className="campo">
           <label htmlFor="monto">Monto a donar (USD)</label>
           <div className="monto-input-group">
@@ -505,10 +557,6 @@ function Donaciones() {
       COBIJAS_CAMAS: "Cobijas y camas"
     };
 
-    const recoleccionTexto = donacionData?.tipoRecoleccion === "llevo" 
-      ? "llevarás al refugio" 
-      : "recolectaremos en tu dirección";
-
     return (
       <div className="donacion-formulario" style={{ textAlign: "center", padding: "40px 30px" }}>
         <div style={{ fontSize: "4rem", marginBottom: "16px" }}>
@@ -532,6 +580,20 @@ function Donaciones() {
         }}>
           {donacionData?.cantidad} unidad(es) de {categoriaTexto[donacionData?.categoria] || "insumos"} para {formEspecie.especieDestino === "PERRO" ? "🐶 perros" : "🐱 gatos"}
         </p>
+
+        {donacionData?.refugio && (
+          <div style={{ 
+            background: "#dbeafe", 
+            borderRadius: "12px", 
+            padding: "12px 16px",
+            marginBottom: "20px",
+            border: "1px solid #93c5fd"
+          }}>
+            <p style={{ margin: 0, fontSize: "0.95rem", color: "#1e40af" }}>
+              🏠 <strong>Refugio beneficiario:</strong> {donacionData.refugio.nombre}
+            </p>
+          </div>
+        )}
 
         <div style={{ 
           background: "#e8f5f0", 
@@ -626,6 +688,27 @@ function Donaciones() {
         </p>
 
         <form onSubmit={handleDonarEspecie}>
+          {/* Selector de Refugio */}
+          <div className="campo">
+            <label htmlFor="refugioIdEspecie">Refugio beneficiario *</label>
+            <select
+              id="refugioIdEspecie"
+              name="refugioId"
+              value={formEspecie.refugioId}
+              onChange={handleEspecieChange}
+              required
+              disabled={cargandoRefugios}
+            >
+              <option value="">{cargandoRefugios ? "Cargando refugios..." : "Selecciona un refugio"}</option>
+              {refugios.map((refugio) => (
+                <option key={refugio.id} value={refugio.id}>
+                  🏠 {refugio.nombre} - {refugio.direccion}
+                </option>
+              ))}
+            </select>
+            <small>Elige el refugio al que quieres ayudar</small>
+          </div>
+
           {/* Categoría */}
           <div className="campo">
             <label htmlFor="categoria">Categoría *</label>

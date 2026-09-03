@@ -20,6 +20,9 @@ import AdminCitas from "./pages/admin/AdminCitas";
 import AdminSolicitudes from "./pages/admin/AdminSolicitudes";
 import AdminReportes from "./pages/admin/AdminReportes";
 import AdminDonaciones from "./pages/admin/AdminDonaciones";
+// 👇 NUEVAS IMPORTACIONES PARA REFUGIOS
+import AdminRefugios from "./pages/admin/AdminRefugios";
+import AdminRefugiosDetalle from "./pages/admin/AdminRefugiosDetalle";
 
 function App() {
   return (
@@ -27,6 +30,7 @@ function App() {
       <ToastProvider>
         <BrowserRouter>
           <Routes>
+            {/* ── Rutas Públicas ── */}
             <Route path="/" element={<Inicio />} />
             <Route path="/login" element={<AuthSliding />} />
             <Route path="/registro" element={<AuthSliding />} />
@@ -34,9 +38,11 @@ function App() {
             <Route path="/eventos" element={<Eventos />} />
             <Route path="/donaciones" element={<Donaciones />} />
             
+            {/* ── PayPal Confirmación ── */}
             <Route path="/donaciones/paypal/exito" element={<DonacionPayPalConfirmacion />} />
             <Route path="/donaciones/paypal/cancelado" element={<DonacionPayPalConfirmacion />} />
             
+            {/* ── Rutas Protegidas ── */}
             <Route
               path="/adopcion/:id/solicitud"
               element={
@@ -46,6 +52,7 @@ function App() {
               }
             />
             
+            {/* ── Panel de Administración ── */}
             <Route
               path="/admin"
               element={
@@ -56,16 +63,20 @@ function App() {
             >
               <Route index element={<Navigate to="usuarios" replace />} />
               <Route path="mascotas" element={<AdminMascotas />} />
-              <Route path="usuarios" element={<AdminUsuarios />} />
-              <Route path="reportes" element={<AdminReportes />} />
-              <Route path="informes" element={<AdminReportes />} />
+              <Route path="eventos" element={<AdminEventos />} />
               <Route path="inscripciones" element={<AdminInscripciones />} />
               <Route path="solicitudes" element={<AdminSolicitudes />} />
-              <Route path="eventos" element={<AdminEventos />} />
               <Route path="citas" element={<AdminCitas />} />
+              <Route path="refugios" element={<AdminRefugios />} />
+              <Route path="refugios/:id" element={<AdminRefugiosDetalle />} />
               <Route path="donaciones" element={<AdminDonaciones />} />
+              <Route path="reportes" element={<AdminReportes />} />
+              <Route path="informes" element={<AdminReportes />} />
+              <Route path="usuarios" element={<AdminUsuarios />} />
             </Route>
           </Routes>
+          
+          {/* ── Modal de Perfil (global) ── */}
           <PerfilModal />
         </BrowserRouter>
       </ToastProvider>

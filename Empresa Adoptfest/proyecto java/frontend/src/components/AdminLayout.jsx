@@ -6,12 +6,14 @@ import { imagenUrl } from "../services/api";
 import "../styles/AdminLayout.css";
 import logoDefault from "../assets/icono/logo de empresa.png";
 
+// src/components/AdminLayout.jsx - Solo mostrar la sección agregada
 const SECCIONES = [
   { to: "/admin/mascotas", icono: "🐾", label: "Mascotas" },
   { to: "/admin/eventos", icono: "🎉", label: "Eventos" },
   { to: "/admin/inscripciones", icono: "🎟️", label: "Inscripciones" },
   { to: "/admin/solicitudes", icono: "📋", label: "Solicitudes" },
   { to: "/admin/citas", icono: "📅", label: "Citas" },
+  { to: "/admin/refugios", icono: "🏠", label: "Refugios" }, // 👈 NUEVO
   { to: "/admin/donaciones", icono: "💜", label: "Donaciones" },
   { to: "/admin/reportes", icono: "📊", label: "Informes" },
   { to: "/admin/usuarios", icono: "👥", label: "Usuarios" },

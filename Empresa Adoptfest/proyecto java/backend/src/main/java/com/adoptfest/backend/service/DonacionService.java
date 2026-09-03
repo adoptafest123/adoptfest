@@ -1,3 +1,4 @@
+// src/main/java/com/adoptfest/backend/service/DonacionService.java
 package com.adoptfest.backend.service;
 
 import com.adoptfest.backend.dto.CrearDonacionDineroRequest;
@@ -5,6 +6,7 @@ import com.adoptfest.backend.dto.DonacionEspecieRequest;
 import com.adoptfest.backend.model.*;
 import com.adoptfest.backend.repository.DonacionDineroRepository;
 import com.adoptfest.backend.repository.DonacionEspecieRepository;
+import com.adoptfest.backend.repository.RefugioRepository;
 import com.adoptfest.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,7 @@ public class DonacionService {
     private final DonacionDineroRepository donacionDineroRepository;
     private final DonacionEspecieRepository donacionEspecieRepository;
     private final UserRepository userRepository;
+    private final RefugioRepository refugioRepository;
     private final PayPalService payPalService;
     private final NotificacionService notificacionService;
 
@@ -35,9 +38,8 @@ public class DonacionService {
     public Map<String, Object> crearOrdenDinero(User usuario, CrearDonacionDineroRequest datos, String moneda) {
         try {
             log.info("💰 Creando orden de donación para usuario: {}", usuario.getEmail());
-            log.info("📊 Monto: {}, Moneda: {}", datos.monto(), moneda);
+            log.info("📊 Monto: {}, Moneda: {}, Refugio ID: {}", datos.monto(), moneda, datos.refugioId());
 
-            // 1. Crear la orden en PayPal
             Map<String, Object> orden = payPalService.crearOrden(datos.monto(), moneda);
 
             if (orden == null || orden.get("id") == null) {
@@ -48,7 +50,6 @@ public class DonacionService {
                 );
             }
 
-            // 2. Extraer el link de aprobación
             String linkAprobacion = payPalService.extraerLinkAprobacion(orden);
             if (linkAprobacion == null) {
                 log.error("❌ PayPal no devolvió un link de aprobación. Orden: {}", orden);
@@ -60,11 +61,19 @@ public class DonacionService {
 
             String orderId = (String) orden.get("id");
             log.info("✅ Orden PayPal creada. Order ID: {}", orderId);
-            log.info("🔗 Link de aprobación: {}", linkAprobacion);
 
-            // 3. Guardar en la base de datos
+            Refugio refugio = null;
+            if (datos.refugioId() != null) {
+                refugio = refugioRepository.findById(datos.refugioId())
+                        .orElseThrow(() -> new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Refugio no encontrado"
+                        ));
+            }
+
             DonacionDinero donacion = DonacionDinero.builder()
                     .user(usuario)
+                    .refugio(refugio)
                     .monto(datos.monto())
                     .moneda(moneda)
                     .paypalOrderId(orderId)
@@ -106,17 +115,14 @@ public class DonacionService {
 
             log.info("📋 Donación encontrada. Estado actual: {}", donacion.getEstado());
 
-            // Si ya está completada, no hacer nada
             if (donacion.getEstado() == EstadoDonacionDinero.COMPLETADO) {
                 log.info("✅ Donación ya estaba completada. ID: {}", donacion.getId());
                 return donacion;
             }
 
-            // Capturar la orden en PayPal
             Map<String, Object> resultado = payPalService.capturarOrden(orderId);
             log.info("📥 Respuesta de captura PayPal: {}", resultado);
 
-            // Verificar si el pago fue exitoso
             String status = (String) resultado.get("status");
             boolean pagoExitoso = resultado != null && "COMPLETED".equals(status);
 
@@ -130,27 +136,29 @@ public class DonacionService {
                 );
             }
 
-            // Calcular puntos (1 punto por dólar)
             int puntos = donacion.getMonto().setScale(0, RoundingMode.HALF_UP).intValue();
 
-            // Actualizar donación
             donacion.setEstado(EstadoDonacionDinero.COMPLETADO);
             donacion.setPuntosOtorgados(puntos);
             donacion = donacionDineroRepository.save(donacion);
             log.info("✅ Donación completada. Puntos otorgados: {}", puntos);
 
-            // Sumar puntos al usuario
             User usuario = donacion.getUser();
             usuario.sumarPuntosDonante(puntos);
             userRepository.save(usuario);
             log.info("✅ Usuario actualizado. Nuevos puntos: {}", usuario.getPuntosDonante());
 
-            // Crear notificación
+            String mensajeNotificacion = "Has donado $" + donacion.getMonto() + " " + donacion.getMoneda() +
+                    " y has ganado " + puntos + " puntos de donante. ¡Tu apoyo ayuda a más mascotas a encontrar hogar!";
+            
+            if (donacion.getRefugio() != null) {
+                mensajeNotificacion += " Beneficio al refugio: " + donacion.getRefugio().getNombre();
+            }
+
             notificacionService.crear(
                     usuario,
                     "🎉 ¡Gracias por tu donación!",
-                    "Has donado $" + donacion.getMonto() + " " + donacion.getMoneda() +
-                            " y has ganado " + puntos + " puntos de donante. ¡Tu apoyo ayuda a más mascotas a encontrar hogar!",
+                    mensajeNotificacion,
                     TipoNotificacion.EXITO
             );
 
@@ -199,10 +207,21 @@ public class DonacionService {
     public DonacionEspecie registrarEspecie(User usuario, DonacionEspecieRequest datos) {
         try {
             log.info("📦 Registrando donación en especie para usuario: {}", usuario.getEmail());
-            log.info("📋 Categoría: {}, Cantidad: {}", datos.categoria(), datos.cantidad());
+            log.info("📋 Categoría: {}, Cantidad: {}, Refugio ID: {}", 
+                datos.categoria(), datos.cantidad(), datos.refugioId());
+
+            Refugio refugio = null;
+            if (datos.refugioId() != null) {
+                refugio = refugioRepository.findById(datos.refugioId())
+                        .orElseThrow(() -> new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Refugio no encontrado"
+                        ));
+            }
 
             DonacionEspecie donacion = DonacionEspecie.builder()
                     .user(usuario)
+                    .refugio(refugio)
                     .categoria(datos.categoria())
                     .especieDestino(datos.especieDestino())
                     .descripcion(datos.descripcion())
@@ -215,11 +234,17 @@ public class DonacionService {
             DonacionEspecie guardada = donacionEspecieRepository.save(donacion);
             log.info("✅ Donación en especie registrada. ID: {}", guardada.getId());
 
+            String mensajeNotificacion = "Tu donación de " + datos.categoria() + 
+                    " fue registrada y está pendiente de revisión. Te notificaremos cuándo pasaremos a recogerla.";
+            
+            if (refugio != null) {
+                mensajeNotificacion += " Beneficiará al refugio: " + refugio.getNombre();
+            }
+
             notificacionService.crear(
                     usuario,
                     "📦 Donación registrada",
-                    "Tu donación de " + datos.categoria() + " fue registrada y está pendiente de revisión. " +
-                            "Te notificaremos cuándo pasaremos a recogerla.",
+                    mensajeNotificacion,
                     TipoNotificacion.INFO
             );
 
@@ -313,7 +338,6 @@ public class DonacionService {
 
             DonacionEspecie donacion = obtenerEspecieOFallar(id);
 
-            // Calcular puntos según categoría y cantidad
             int puntos = donacion.calcularPuntos();
             log.info("📊 Puntos calculados: {}", puntos);
 
@@ -324,18 +348,22 @@ public class DonacionService {
             DonacionEspecie guardada = donacionEspecieRepository.save(donacion);
             log.info("✅ Donación confirmada. ID: {}", guardada.getId());
 
-            // Sumar puntos al usuario
             User usuario = donacion.getUser();
             usuario.sumarPuntosDonante(puntos);
             userRepository.save(usuario);
             log.info("✅ Usuario actualizado. Nuevos puntos: {}", usuario.getPuntosDonante());
 
-            // Notificar al usuario
+            String mensajeNotificacion = "Tu donación de " + donacion.getCategoria() + 
+                    " fue recibida exitosamente. Has ganado " + puntos + " puntos de donante. ¡Gracias por tu generosidad!";
+            
+            if (donacion.getRefugio() != null) {
+                mensajeNotificacion += " Beneficiaste al refugio: " + donacion.getRefugio().getNombre();
+            }
+
             notificacionService.crear(
                     usuario,
                     "🎉 ¡Recibimos tu donación!",
-                    "Tu donación de " + donacion.getCategoria() + " fue recibida exitosamente. " +
-                            "Has ganado " + puntos + " puntos de donante. ¡Gracias por tu generosidad!",
+                    mensajeNotificacion,
                     TipoNotificacion.EXITO
             );
 
@@ -359,7 +387,6 @@ public class DonacionService {
 
             DonacionEspecie donacion = obtenerEspecieOFallar(id);
 
-            // Notificar antes de eliminar
             notificacionService.crear(
                     donacion.getUser(),
                     "🗑️ Donación eliminada",

@@ -1,3 +1,4 @@
+// src/main/java/com/adoptfest/backend/model/DonacionDinero.java
 package com.adoptfest.backend.model;
 
 import jakarta.persistence.*;
@@ -25,8 +26,12 @@ public class DonacionDinero {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "refugio_id")
+    private Refugio refugio;
+
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal monto; // BigDecimal, nunca double/float para dinero: evita errores de redondeo
+    private BigDecimal monto;
 
     @Column(nullable = false)
     private String moneda;
