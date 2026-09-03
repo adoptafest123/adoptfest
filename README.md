@@ -1,4 +1,4 @@
-este es el readme:                                                                                                                                                                 # Adoptfest
+# Adoptfest
 
 <img width="582" height="442" alt="Captura de pantalla 2026-02-19 100811" src="https://github.com/user-attachments/assets/056c927e-d9cf-4e4e-91e0-6e6868039de7" />
 
