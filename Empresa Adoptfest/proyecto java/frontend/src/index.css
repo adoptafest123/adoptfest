@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* ── Paleta de Tonos Verdes (Adoptfest) ── */
+  --color-verde-profundo: #0c2b21;
+  --color-verde-oscuro: #114232;
+  --color-verde-principal: #1b6b50;
+  --color-verde-medio: #2d8a68;
+  --color-verde-claro: #41b086;
+  --color-verde-suave: #e8f5f0;
+  --color-verde-badge: #d1fae5;
+
+  /* ── Aliases de compatibilidad ── */
+  --color-teal: #1b6b50;
+  --color-teal-dark: #0c2b21;
+  --color-teal-light: #41b086;
+
+  --verde: #1b6b50;
+  --verde-oscuro: #114232;
+  --verde-profundo: #0c2b21;
+  --verde-suave: #e8f5f0;
+
+  /* ── Acentos cálidos y complementarios ── */
+  --color-coral: #ff6f59;
+  --color-coral-dark: #e8533c;
+  --color-oro: #f59e0b;
+  --color-oro-claro: #fef3c7;
+  --color-plata: #94a3b8;
+  --color-bronce: #d97706;
+  --ambar: #f59e0b;
+
+  /* ── Neutros y Textos ── */
+  --color-bg: #f5f8f6;
+  --color-ink: #13221d;
+  --color-line: #e2ebe6;
+  --color-muted: #577067; /* 👈 agregado: alias de --texto-suave, lo usan Adopcion/Hero/Footer */
+  --texto: #182823;
+  --texto-suave: #577067;
+  --blanco: #ffffff;
+  --fondo: #f5f8f6;
+
+  /* ── Tipografías ── */
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+
+  /* ── Sombras ── */
+  --sombra: 0 20px 45px -20px rgba(12, 43, 33, 0.25);
+  --sombra-card: 0 10px 30px rgba(12, 43, 33, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--texto);
+  -webkit-font-smoothing: antialiased;
+
+  background: var(--fondo) url('./assets/icono/fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Capa semitransparente para que las páginas con contenido (Adopción, etc.)
+   se lean claro sobre la foto de fondo, sin taparla del todo */
+.pagina-con-fondo {
+  background: rgba(245, 248, 246, 0.94);
+  min-height: 100vh;
+}

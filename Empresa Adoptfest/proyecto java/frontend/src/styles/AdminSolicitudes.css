@@ -1,0 +1,122 @@
+.as-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--color-verde-suave);
+  padding: 4px;
+  border-radius: 999px;
+}
+
+.as-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--texto-suave);
+}
+
+.as-tab.activo {
+  background: white;
+  color: var(--color-teal);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.as-modal-detalle {
+  max-width: 640px;
+}
+
+.as-detalle-body {
+  padding: 22px 26px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.as-detalle-seccion {
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.as-detalle-seccion:last-of-type {
+  border-bottom: none;
+}
+
+.as-detalle-seccion h4 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-teal);
+  margin: 0 0 8px;
+}
+
+.as-detalle-seccion p {
+  font-size: 13.5px;
+  margin: 4px 0;
+  color: var(--texto);
+}
+
+.as-detalle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13.5px;
+}
+
+.as-detalle-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.as-subform {
+  background: var(--color-verde-suave);
+  border-radius: 16px;
+  padding: 18px;
+  margin-top: 6px;
+}
+
+.as-subform h4 {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  margin: 0 0 12px;
+}
+.as-posicion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-verde-suave);
+  color: var(--color-teal);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .as-detalle-grid { grid-template-columns: 1fr; }
+}
+.as-tarjeta-invitado {
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1.5px solid #fde68a;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.as-tarjeta-invitado-titulo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+}

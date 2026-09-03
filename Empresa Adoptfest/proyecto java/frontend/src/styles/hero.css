@@ -1,0 +1,305 @@
+.hero-envoltorio {
+  position: relative;
+}
+
+.hero-carrusel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-item {
+  display: none;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.carrusel-imagen {
+  height: 650px;
+  object-fit: cover;
+}
+
+.carrusel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 56, 56, 0.15) 0%,
+    rgba(9, 56, 42, 0.4) 55%,
+    rgba(9, 56, 29, 0.8) 100%
+   
+  );
+}
+
+.carrusel-contenedor-texto {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 740px;
+  padding: 150px 20px;
+  text-align: center;
+}
+
+.carrusel-caja-texto {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  padding: 28px 32px;
+  border-radius: 20px;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-aparecer 0.6s ease forwards 0.2s;
+}
+
+@keyframes hero-aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.carrusel-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 6px;
+  color: var(--color-oro);
+}
+
+.carrusel-caja-texto h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 32px;
+  margin: 0 0 18px;
+  line-height: 1.2;
+}
+
+.carrusel-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--color-coral);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.carrusel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 111, 89, 0.4);
+  color: white;
+}
+
+/* ── Flechas: posicionadas a los costados del carrusel ── */
+.carrusel-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  color: white;
+  font-size: 23px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-carrusel:hover .carrusel-flecha {
+  opacity: 1;
+}
+
+.carrusel-flecha:hover {
+  background: var(--color-coral);
+  border-color: var(--color-coral);
+}
+
+.carrusel-flecha span {
+  display: block;
+  line-height: 1;
+  transform: translateY(-3px);
+}
+
+.carrusel-flecha-prev {
+  left: 20px;
+}
+
+.carrusel-flecha-next {
+  right: 24px;
+}
+
+/* ── Indicadores ── */
+.carrusel-indicadores {
+  position: absolute;
+  bottom: 50px;
+  left: 48%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.carrusel-indicadores button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 0;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.carrusel-indicadores button.active {
+  background: var(--color-coral);
+  width: 22px;
+  border-radius: 999px;
+}
+
+/* ── Variantes de color por página ── */
+.hero-carrusel--coral .carrusel-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(9, 56, 56, 0.15) 0%,
+    rgba(9, 56, 42, 0.4) 55%,
+    rgba(9, 56, 29, 0.8) 100%
+  );
+}
+
+.hero-carrusel--coral .carrusel-eyebrow {
+  color: var(--color-coral);
+}
+
+.hero-carrusel--dorado .carrusel-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(232, 163, 61, 0.18) 0%,
+    rgba(9, 56, 56, 0.4) 55%,
+    rgba(9, 56, 56, 0.8) 100%
+  );
+}
+
+.hero-carrusel--dorado .carrusel-eyebrow {
+  color: var(--color-oro);
+}
+
+/* ── Franja flotante de datos (el elemento nuevo, exclusivo de páginas internas) ── */
+.hero-con-franja {
+  margin-bottom: 70px;
+}
+
+.hero-franja {
+  position: relative;
+  z-index: 5;
+  max-width: 900px;
+  margin: 56px auto 0;
+  padding: 0 20px;
+}
+
+.hero-franja-inner {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(9, 56, 56, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  flex: 1;
+  min-width: 130px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 22px;
+  border-right: 1px solid var(--color-line);
+}
+
+.hero-stat:last-child {
+  border-right: none;
+}
+
+.hero-stat-icono {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.hero-stat-numero {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--color-ink);
+  line-height: 1;
+  display: block;
+}
+
+.hero-stat-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .carrusel-imagen {
+    height: 460px;
+  }
+
+  .carrusel-caja-texto {
+    padding: 20px 22px;
+  }
+
+  .carrusel-caja-texto h2 {
+    font-size: 24px;
+  }
+
+  .carrusel-flecha {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-franja {
+    margin-top: -40px;
+  }
+
+  .hero-franja-inner {
+    flex-direction: column;
+  }
+
+  .hero-stat {
+    border-right: none;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .hero-stat:last-child {
+    border-bottom: none;
+  }
+}

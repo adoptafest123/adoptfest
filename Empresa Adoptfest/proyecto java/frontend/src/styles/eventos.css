@@ -1,0 +1,397 @@
+.eventos-contenido {
+  padding: 36px 16px 60px;
+}
+
+.eventos-filtros {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.eventos-chip {
+  padding: 9px 16px;
+  border: 1.5px solid var(--color-line);
+  background: white;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--texto-suave);
+  transition: all 0.15s ease;
+}
+
+.eventos-chip.activo {
+  background: var(--color-oro);
+  border-color: var(--color-oro);
+  color: white;
+}
+
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.evento-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--sombra-card);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.evento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(12, 43, 33, 0.14);
+}
+
+.evento-card-imagen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--color-verde-suave);
+}
+
+.evento-card-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evento-card-sin-imagen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.evento-card-sin-imagen.grande {
+  font-size: 70px;
+}
+
+.evento-badge-inscrito {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #1c6b45;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.evento-card-info {
+  padding: 16px 18px 20px;
+}
+
+.evento-card-fecha {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-oro);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.evento-card-info h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 4px 0 4px;
+  color: var(--texto);
+}
+
+.evento-card-lugar {
+  font-size: 13px;
+  color: var(--texto-suave);
+  margin: 0;
+}
+
+/* ── Placa de categoría, mismo lenguaje visual que mascota-tag ── */
+.evento-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px 4px 16px;
+  border-radius: 0 10px 10px 10px;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.evento-tag-aro {
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  background: white;
+}
+
+.cat-adopcion { background: linear-gradient(135deg, #4fa87f, #2d7a56); }
+.cat-educacion { background: linear-gradient(135deg, #6ba3d6, #3a76ab); }
+.cat-recreacion { background: linear-gradient(135deg, #f3c866, var(--color-oro)); color: #5c3d09; }
+
+/* ── Estados vacíos ── */
+.eventos-estado-vacio {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--texto-suave);
+}
+
+.eventos-spinner {
+  width: 34px; height: 34px;
+  margin: 0 auto;
+  border: 3px solid var(--color-line);
+  border-top-color: var(--color-oro);
+  border-radius: 50%;
+  animation: eventos-spin 0.7s linear infinite;
+}
+
+@keyframes eventos-spin { to { transform: rotate(360deg); } }
+
+/* ── Modal de detalle (misma estructura que el de mascotas) ── */
+.evento-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 43, 33, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1050;
+}
+
+.evento-modal {
+  background: white;
+  border-radius: 20px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .evento-modal { flex-direction: row; }
+  .evento-modal-imagen { width: 42%; flex-shrink: 0; }
+}
+
+.evento-modal-cerrar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+}
+
+.evento-modal-imagen {
+  aspect-ratio: 1 / 1;
+  background: var(--color-verde-suave);
+}
+
+.evento-modal-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.evento-modal-contenido {
+  padding: 26px 26px 30px;
+  flex: 1;
+}
+
+.evento-modal-contenido h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 10px 0 2px;
+}
+
+.evento-modal-meta {
+  font-size: 13.5px;
+  color: var(--texto-suave);
+  margin-bottom: 14px;
+}
+
+.evento-modal-contenido p {
+  font-size: 14px;
+  color: var(--texto);
+  line-height: 1.55;
+}
+
+.evento-ya-inscrito {
+  background: #e4f3ea;
+  color: #1c6b45;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-top: 16px;
+}
+
+.evento-btn-inscribirse {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  background: var(--color-oro);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.evento-btn-inscribirse:disabled {
+  background: var(--color-line);
+  color: var(--texto-suave);
+}
+
+.evento-form-inscripcion {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.evento-campo label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  margin-bottom: 4px;
+}
+
+.evento-campo input, .evento-campo textarea {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+}
+
+.evento-campo input:focus, .evento-campo textarea:focus {
+  border-color: var(--color-oro);
+}
+
+.evento-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 9px 13px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.evento-cupos-info {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-oro);
+  margin: -6px 0 10px;
+}
+
+.evento-checkbox-linea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--texto);
+}
+
+.evento-submascota {
+  background: var(--color-verde-suave);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.evento-reglas {
+  background: #fef3c7;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+}
+
+.evento-reglas ul {
+  margin: 6px 0 10px;
+  padding-left: 18px;
+}
+
+.evento-reglas li {
+  margin-bottom: 4px;
+}
+.evento-mini-titulo {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-teal-dark);
+  margin: 0 0 4px;
+}
+
+.evento-campos-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.evento-tarjeta-invitado {
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1.5px solid #fde68a;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.evento-tarjeta-invitado-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.evento-tarjeta-invitado-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-oro);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.evento-tarjeta-invitado-titulo {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}

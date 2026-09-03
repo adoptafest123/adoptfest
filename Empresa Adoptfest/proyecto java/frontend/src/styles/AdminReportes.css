@@ -1,0 +1,96 @@
+.rp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.rp-tarjeta {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.rp-tarjeta-grande {
+  padding: 26px 24px;
+}
+
+.rp-tarjeta-icono {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.rp-tarjeta-numero {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--texto);
+  line-height: 1.1;
+}
+
+.rp-tarjeta-grande .rp-tarjeta-numero {
+  font-size: 30px;
+}
+
+.rp-tarjeta-label {
+  display: block;
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin-top: 2px;
+}
+
+/* ── Panel con gráfica ── */
+.rp-panel {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+}
+
+.rp-panel-grafica, .rp-panel-leyenda {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+  padding: 22px;
+}
+
+.rp-panel-grafica h3 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.rp-leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.rp-leyenda-punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rp-total-mascotas {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--texto-suave);
+}
+
+@media (max-width: 768px) {
+  .rp-panel { grid-template-columns: 1fr; }
+}

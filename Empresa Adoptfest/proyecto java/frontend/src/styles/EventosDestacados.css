@@ -1,0 +1,127 @@
+.ed-seccion {
+  padding: 56px 16px;
+}
+
+.ed-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ed-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-oro);
+  margin-bottom: 4px;
+}
+
+.ed-cabecera h2 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  color: white;
+}
+
+.ed-ver-todos {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #41b086;
+  text-decoration: none;
+}
+
+.ed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.ed-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--sombra-card);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: block;
+}
+
+.ed-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(12, 43, 33, 0.14);
+  color: inherit;
+}
+
+.ed-card-imagen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--color-verde-suave);
+}
+
+.ed-card-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ed-card-sin-imagen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.ed-cuenta-regresiva {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--color-coral);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ed-card-info {
+  padding: 16px 18px 18px;
+}
+
+.ed-categoria {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cat-adopcion { color: #41b086; }
+.cat-educacion { color: #4a9bcc; }
+.cat-recreacion { color: #d4a017; }
+
+.ed-card-info h3 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 16.5px;
+  font-weight: 600;
+  margin: 5px 0 5px;
+  color: var(--texto);
+}
+
+.ed-card-info p {
+  font-size: 12.5px;
+  color: var(--texto-suave);
+  margin: 0;
+}

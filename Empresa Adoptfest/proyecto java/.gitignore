@@ -1,0 +1,74 @@
+# ==========================================
+# .gitignore para TODO el proyecto Adoptfest
+# ==========================================
+
+# === BACKEND (Spring Boot) ===
+backend/target/
+backend/.idea/
+backend/*.iml
+backend/.settings/
+backend/.project
+backend/.classpath
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+
+# === CONFIGURACIONES SECRETAS DEL BACKEND ===
+backend/src/main/resources/application.properties
+backend/src/main/resources/application-dev.properties
+backend/src/main/resources/application-prod.properties
+backend/.env
+backend/.env.*
+backend/*.log
+
+# === FRONTEND (React) ===
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.idea/
+frontend/*.iml
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.production.local
+frontend/*.log
+
+# === NOTIFICACIONES (Node.js) ===
+notificaciones/node_modules/
+notificaciones/.env
+notificaciones/.env.local
+notificaciones/*.log
+notificaciones/dist/
+
+# === ARCHIVOS SUBIDOS (¡IMPORTANTE!) ===
+uploads/
+!uploads/.gitkeep    # Esto mantiene la carpeta vacía en Git
+
+# === ARCHIVOS DE SISTEMA ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+*.log
+
+# === ARCHIVOS DEL SISTEMA OPERATIVO ===
+.spotless
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# === ARCHIVOS DE COMPILACIÓN ===
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# === VARIABLES DE ENTORNO ===
+.env
+.env.*
+!.env.example

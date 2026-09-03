@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "app.jwt.secret",
+    "type": "java.lang.String",
+    "description": "Secret key used to sign JWT tokens."
+  },
+  {
+    "name": "app.jwt.expiration-ms",
+    "type": "java.lang.Long",
+    "description": "JWT token validity duration in milliseconds."
+  },
+  {
+    "name": "app.cors.allowed-origins",
+    "type": "java.lang.String",
+    "description": "Comma-separated list of origins allowed by CORS."
+  },
+  {
+    "name": "app.paypal.currency",
+    "type": "java.lang.String",
+    "description": "A description for 'app.paypal.currency'"
+  },
+  {
+    "name": "app.upload.dir",
+    "type": "java.lang.String",
+    "description": "A description for 'app.upload.dir'"
+  },
+  {
+    "name": "app.paypal.client-id",
+    "type": "java.lang.String",
+    "description": "A description for 'app.paypal.client-id'"
+  },
+  {
+    "name": "app.paypal.client-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'app.paypal.client-secret'"
+  },
+  {
+    "name": "app.paypal.mode",
+    "type": "java.lang.String",
+    "description": "A description for 'app.paypal.mode'"
+  },
+  {
+    "name": "app.frontend.url",
+    "type": "java.lang.String",
+    "description": "A description for 'app.frontend.url'"
+  }
+]}

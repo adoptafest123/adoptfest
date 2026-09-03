@@ -1,0 +1,331 @@
+.as-fondo {
+  min-height: 100vh;
+  /* Ya no tapamos la foto de fondo — dejamos que se vea, con un velo
+     oscuro semitransparente encima para que el card siga siendo legible */
+  background: linear-gradient(160deg, rgba(9, 56, 56, 0.55) 0%, rgba(9, 56, 56, 0.75) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+
+.as-volver {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-body);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.as-volver:hover {
+  color: white;
+}
+
+.as-contenedor {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  min-height: 520px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+/* ── Formularios ── */
+.as-form-contenedor {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: all 0.6s ease-in-out;
+}
+
+.as-login {
+  left: 0;
+  z-index: 2;
+}
+
+.as-registro {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.as-contenedor.as-panel-derecho .as-login {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.as-contenedor.as-panel-derecho .as-registro {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: as-mostrar 0.6s;
+}
+
+@keyframes as-mostrar {
+  0%, 49.99% { opacity: 0; z-index: 1; }
+  50%, 100% { opacity: 1; z-index: 5; }
+}
+
+.as-form {
+  background: transparent; /* antes era blanco sólido, ahora hereda la transparencia del contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 44px;
+  text-align: center;
+}
+
+.as-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--color-oro);
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.as-form h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 4px;
+  color: var(--texto);
+}
+
+.as-subtexto {
+  font-size: 12.5px;
+  color: var(--texto-suave);
+  margin-bottom: 18px;
+}
+
+.as-form input {
+  background: rgba(232, 245, 240, 0.7); /* var(--color-verde-suave) con transparencia */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 6px 0;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  outline: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.as-form input:focus {
+  box-shadow: 0 0 0 2px var(--color-teal);
+}
+
+.as-error-campo {
+  align-self: flex-start;
+  color: #b3392b;
+  font-size: 11px;
+  margin: -2px 0 4px;
+}
+
+.as-error-general {
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 12.5px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.as-btn {
+  border-radius: 999px;
+  border: none;
+  background: var(--color-coral);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 12px 42px;
+  margin-top: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.as-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 111, 89, 0.4);
+}
+
+.as-btn:disabled {
+  opacity: 0.7;
+}
+
+.as-link-movil {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-teal);
+  font-size: 12.5px;
+  margin-top: 14px;
+  text-decoration: underline;
+}
+
+/* ── Overlay deslizante ── */
+.as-overlay-contenedor {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.as-contenedor.as-panel-derecho .as-overlay-contenedor {
+  transform: translateX(-100%);
+}
+
+.as-overlay {
+  background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-coral) 150%);
+  color: white;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.as-contenedor.as-panel-derecho .as-overlay {
+  transform: translateX(50%);
+}
+
+.as-overlay-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  text-align: center;
+  transition: transform 0.6s ease-in-out;
+}
+
+.as-overlay-izq {
+  transform: translateX(-20%);
+}
+
+.as-contenedor.as-panel-derecho .as-overlay-izq {
+  transform: translateX(0);
+}
+
+.as-overlay-der {
+  right: 0;
+  transform: translateX(0);
+}
+
+.as-contenedor.as-panel-derecho .as-overlay-der {
+  transform: translateX(20%);
+}
+
+.as-tag-collar {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.as-tag-aro {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.as-overlay-panel h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+
+.as-overlay-panel p {
+  font-size: 13px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0 0 22px;
+  max-width: 260px;
+}
+
+.as-btn-fantasma {
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+.as-btn-fantasma:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive: en móvil el overlay no cabe bien, se cambia a tabs simples ── */
+@media (max-width: 720px) {
+  .as-contenedor {
+    min-height: auto;
+  }
+
+  .as-overlay-contenedor {
+    display: none;
+  }
+
+  .as-form-contenedor {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: none;
+  }
+
+  .as-login, .as-registro {
+    opacity: 1;
+    transform: none;
+    z-index: 1;
+    animation: none;
+  }
+
+  .as-contenedor:not(.as-panel-derecho) .as-login {
+    display: block;
+  }
+
+  .as-contenedor.as-panel-derecho .as-registro {
+    display: block;
+  }
+
+  .as-form {
+    padding: 44px 28px;
+  }
+
+  .as-link-movil {
+    display: block;
+  }
+}

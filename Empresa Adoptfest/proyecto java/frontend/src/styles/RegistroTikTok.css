@@ -1,0 +1,292 @@
+.tk-fondo {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--color-teal) 0%, var(--color-teal-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* ── Barra de progreso segmentada (tipo historias) ── */
+.tk-progreso {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.tk-progreso-segmento {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.tk-progreso-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-coral);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.tk-progreso-fill.completo { width: 100%; }
+.tk-progreso-fill.actual { width: 100%; opacity: 0.5; }
+
+.tk-atras {
+  position: fixed;
+  top: 40px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 22px;
+  z-index: 10;
+}
+
+.tk-saltar-login {
+  position: fixed;
+  top: 46px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-family: var(--font-body);
+  text-decoration: underline;
+  z-index: 10;
+}
+
+/* ── La pregunta actual, centrada, pantalla completa ── */
+.tk-pregunta {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  animation: tk-entrar 0.35s ease;
+}
+
+@keyframes tk-entrar {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tk-numero {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-oro);
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.tk-pregunta h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  color: white;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.tk-ayuda {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  margin: 0 0 22px;
+}
+
+/* ── Input minimalista: solo línea abajo, sin caja ── */
+.tk-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 22px;
+  text-align: center;
+  padding: 14px 0;
+  margin-top: 24px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.tk-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 400;
+}
+
+.tk-input:focus {
+  border-bottom-color: var(--color-coral);
+}
+
+.tk-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13.5px;
+  line-height: 1.5;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.tk-checkbox input {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.tk-error {
+  color: #ffb4a8;
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+/* ── Botón principal, flotando abajo ── */
+.tk-btn-principal {
+  background: var(--color-coral);
+  color: white;
+  border: none;
+  padding: 15px 36px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tk-btn-principal:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 111, 89, 0.4);
+}
+
+.tk-btn-principal:disabled {
+  opacity: 0.7;
+}
+
+.tk-flotante {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 280px;
+}
+
+/* ── Pantalla final (foto/descripción) ── */
+.tk-tarjeta-final {
+  background: white;
+  border-radius: 24px;
+  padding: 36px 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.tk-tarjeta-final h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 4px;
+  color: var(--texto);
+}
+
+.tk-sub {
+  color: var(--texto-suave);
+  font-size: 13.5px;
+  margin: 0 0 22px;
+}
+
+.tk-avatar-wrap {
+  margin-bottom: 18px;
+}
+
+.tk-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--color-verde-suave);
+  margin: 0 auto 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+.tk-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tk-btn-outline {
+  display: inline-block;
+  border: 1.5px solid var(--color-line);
+  background: transparent;
+  color: var(--texto);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tk-textarea {
+  width: 100%;
+  border: 1.5px solid var(--color-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  resize: none;
+  margin-bottom: 12px;
+}
+
+.tk-textarea:focus {
+  border-color: var(--color-teal);
+}
+
+.tk-sugerencias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tk-chip {
+  border: 1.5px solid var(--color-line);
+  background: white;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--texto);
+}
+
+.tk-btn-texto {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--texto-suave);
+  font-size: 13px;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .tk-pregunta h1 { font-size: 24px; }
+}   

@@ -1,0 +1,415 @@
+/* ── Wrapper fijo que contiene la isla flotante ── */
+.nb-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+  transition: top 0.3s ease;
+}
+
+.nb-wrapper.nb-scroll {
+  top: 10px;
+}
+
+/* ── La isla en sí (con espacio holgado a los lados para que nada toque los bordes) ── */
+.nb-isla {
+  width: 100%;
+  max-width: 1240px;
+  background: rgba(4, 82, 27, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+  padding: 10px 28px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nb-scroll .nb-isla {
+  background: rgba(4, 82, 27, 0.94);
+  padding: 6px 22px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.nb-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+/* ── Logo tipo placa de collar (Izquierda con margen interno protegido) ── */
+.nb-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+  padding-left: 4px;
+}
+
+.nb-brand-tag {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nb-brand-aro {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  z-index: 1;
+}
+
+.nb-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--color-oro);
+}
+
+.nb-brand-texto {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16.5px;
+  color: white;
+  letter-spacing: -0.01em;
+}
+
+/* ── Links con pill que aparece detrás al hover (Centro) ── */
+.nb-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
+}
+
+.nb-link {
+  position: relative;
+  display: block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  overflow: hidden;
+}
+
+.nb-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  z-index: -1;
+}
+
+.nb-link:hover {
+  color: white;
+}
+
+.nb-link:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ── Lado derecho (Derecha con margen interno protegido) ── */
+.nb-derecha {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-right: 4px;
+}
+
+.nb-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nb-admin {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-coral);
+  color: white;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.nb-admin:hover {
+  color: white;
+  transform: translateY(-1px);
+}
+
+.nb-admin-punto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+  animation: nb-pulso 1.6s ease infinite;
+}
+
+@keyframes nb-pulso {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.nb-perfil {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 4px 14px 4px 4px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.nb-perfil:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nb-perfil-avatar {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-oro);
+  color: var(--color-teal-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.nb-perfil-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nb-perfil-nombre {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  color: white;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nb-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  background: var(--color-coral);
+  color: white;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 9.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-teal-dark);
+}
+
+.nb-logout {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  line-height: 4;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nb-logout:hover {
+  background: rgba(220, 53, 69, 0.35);
+  border-color: rgba(220, 53, 69, 0.6);
+  color: #ff9a8f;
+  transform: scale(1.05);
+}
+
+/* ── Login ── */
+.nb-login {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-coral);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: transform 0.15s ease, gap 0.15s ease;
+}
+
+.nb-login:hover {
+  color: white;
+  transform: translateY(-1px);
+  gap: 10px;
+}
+
+.nb-login-flecha {
+  transition: transform 0.15s ease;
+}
+
+/* ── Toggle móvil ── */
+.nb-toggler {
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+}
+
+.nb-toggler:focus {
+  box-shadow: none;
+}
+
+.nb-toggler-linea {
+  width: 16px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* ── Desktop: Logo izquierda, Enlaces centro, Login/Perfil derecha ── */
+@media (min-width: 992px) {
+  .nb-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin-left: 20px;
+  }
+
+  .nb-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .nb-derecha {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+}
+
+/* ── Responsive móvil ── */
+@media (max-width: 991px) {
+  .nb-isla {
+    border-radius: 26px;
+    padding: 10px 18px;
+  }
+
+  .nb-contenido {
+    flex-wrap: wrap;
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    margin-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 14px;
+  }
+
+  .nb-links {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 12px;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .nb-link {
+    padding: 10px 14px;
+    display: block;
+    text-align: center;
+  }
+
+  .nb-derecha {
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .nb-usuario {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nb-login {
+    width: 100%;
+    justify-content: center;
+  }
+}

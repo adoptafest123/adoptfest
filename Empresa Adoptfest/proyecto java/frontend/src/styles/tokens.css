@@ -1,0 +1,18 @@
+:root {
+  /* Colores */
+  --color-teal: #0e4f4f;
+  --color-teal-dark: #093838;
+  --color-coral: #ff6f59;
+  --color-oro: #e8a33d;
+  --color-plata: #9aa5a3;
+  --color-bronce: #b8703f;
+  --color-bg: #f3f5f1;
+  --color-ink: #1e2a28;
+  --color-line: #e3e7e1;
+  --color-muted: #5b6663;
+
+  /* Tipografía */
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}

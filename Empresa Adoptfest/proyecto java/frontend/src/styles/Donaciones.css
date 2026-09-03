@@ -1,0 +1,232 @@
+/* src/styles/Donaciones.css */
+.donaciones-page {
+  min-height: 100vh;
+  padding: 120px 20px 60px;
+  background: 
+    linear-gradient(rgba(12, 43, 33, 0.7), rgba(12, 43, 33, 0.7)), 
+    url('../assets/imagenes/mascota_1.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.donaciones-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── Selector de tipo de donación ── */
+.donaciones-selector {
+  text-align: center;
+}
+
+.donaciones-selector h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.donaciones-selector p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 32px;
+}
+
+.donaciones-opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.donacion-tipo-btn {
+  background: white;
+  border: 2px solid var(--color-line);
+  border-radius: 20px;
+  padding: 32px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+}
+
+.donacion-tipo-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-card);
+  border-color: var(--color-teal);
+}
+
+.donacion-tipo-btn span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.donacion-tipo-btn small {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* ── Formulario ── */
+.donacion-formulario {
+  background: white;
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: var(--sombra-card);
+}
+
+.btn-volver {
+  background: transparent;
+  border: none;
+  color: var(--color-teal);
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.donacion-formulario h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-teal-dark);
+  margin: 0 0 4px;
+}
+
+.donacion-formulario .subtitulo {
+  color: var(--color-muted);
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-teal-dark);
+  margin-bottom: 4px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--color-teal);
+}
+
+.campo small {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+/* ── Campo de monto con símbolo ── */
+.monto-input-group {
+  position: relative;
+}
+
+.monto-input-group .moneda-simbolo {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.monto-input-group input {
+  padding-left: 30px;
+}
+
+/* ── Montos sugeridos ── */
+.montos-sugeridos {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0 20px;
+  flex-wrap: wrap;
+}
+
+.montos-sugeridos button {
+  padding: 6px 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 999px;
+  background: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-teal);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.montos-sugeridos button:hover {
+  background: var(--color-teal);
+  color: white;
+  border-color: var(--color-teal);
+}
+
+/* ── Botón principal ── */
+.btn-donar {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-coral);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-donar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 111, 89, 0.35);
+}
+
+.btn-donar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.nota-seguridad {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 12px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .donaciones-opciones {
+    grid-template-columns: 1fr;
+  }
+
+  .donacion-formulario {
+    padding: 20px 16px;
+  }
+
+  .montos-sugeridos {
+    flex-wrap: wrap;
+  }
+}
